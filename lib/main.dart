@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/advancedtopics/custompaint/custom_paint_1.dart';
+import 'package:flutter_advanced/advancedtopics/mario_animation/mario_jump_animation.dart';
 import 'package:flutter_advanced/presentation/screens/home_screen.dart';
 
 void main() {
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/' : (context) => HomeScreen(),
-        '/liquid': (context) => CustomPaint1(),
+        '/' : (context) => const HomeScreen(),
+        '/liquid': (context) => const CustomPaint1(),
+        '/mario' : (context) => const MarioJumpAnimation(),
       },
     );
   }

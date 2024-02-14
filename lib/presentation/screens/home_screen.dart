@@ -15,7 +15,11 @@ class HomeScreen extends StatelessWidget {
             children: [
               ElevatedButton(onPressed: (){
                 Navigator.pushNamed(context, '/liquid');
-              }, child: const Text('Glass of Liquid'))
+              }, child: Container(
+                  width: 200,child: Center(child: const Text('Glass of Liquid')))),
+              ElevatedButton(onPressed: (){
+                Navigator.pushNamed(context, '/mario');
+              }, child: Container(width: 200,child: Center(child: const Text('Mario Jump Animation')))),
             ],
           ),
         ),

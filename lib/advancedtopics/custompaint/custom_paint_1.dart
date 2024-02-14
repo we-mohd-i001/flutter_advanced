@@ -9,15 +9,17 @@ class CustomPaint1 extends StatefulWidget {
 }
 
 class _CustomPaint1State extends State<CustomPaint1> {
-  double skew = 0.2;
+  double skew = 0.4;
   double fullness = 0.7;
   double ratio = 0.7;
-  double cupWidth = 0.2;
+  double cupWidth = 0.5;
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.orange,
+      appBar: AppBar(title: Text('Glass of Water'),
+      backgroundColor: Colors.amber.shade800,),
+      backgroundColor: Colors.amber.shade200,
       body: SafeArea(
         child: Column(
           children: [
