@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/advancedtopics/custompaint/custom_paint_1.dart';
 import 'package:flutter_advanced/presentation/screens/home_screen.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/' : (context) => HomeScreen(),
-        '/liquid': (context) => CustomPaint(),
+        '/liquid': (context) => CustomPaint1(),
       },
     );
   }
