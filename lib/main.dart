@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/' : (context) => HomeScreen(),
         '/liquid': (context) => CustomPaint1(),
+        '/mario' : (context) =>
       },
     );
   }
