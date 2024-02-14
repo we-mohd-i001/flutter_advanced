@@ -64,7 +64,7 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
         children: [
           AnimatedBuilder(animation: animationController, builder: (context, child) {
             return Positioned(
-                left: marioX.value * size.width - 50,
+                left: marioX.value * size.width - 16,
                 top: (size.height * 0.5) - 80 * marioY.value,
                 child: const Icon(Icons.man,
                   color: Colors.orange,
