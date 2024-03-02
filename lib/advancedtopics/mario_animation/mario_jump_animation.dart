@@ -71,6 +71,18 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
       TweenSequenceItem(tween: IntTween(begin: 2, end: 2), weight: weights[4]),
     ]).animate(animationController);
 
+    coinY = TweenSequence<double>([
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[0]),
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[1]),
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[2]),
+      TweenSequenceItem(tween: TweenSequence<double>([
+        TweenSequenceItem(tween: Tween(begin: 0.0, end: 3.0), weight: 1.0),
+        TweenSequenceItem(tween: Tween(begin: 3.0, end: 3.0), weight: 1.0),
+      ]), weight: weights[3]),
+      TweenSequenceItem(tween: Tween(begin: 4.0, end: 4.0), weight: weights[4]),
+    ]).animate(animationController);
+
+
     animationController.repeat();
   }
   
@@ -93,12 +105,22 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
           AnimatedBuilder(animation: animationController, builder: (context, child) {
             return Positioned(
                 left: size.width/2 - 16,
+                top: (size.height * 0.5) - 95 -10 * coinY.value,
+                child: const Image(
+                  image: AssetImage("assets/coin.png"),
+                  gaplessPlayback: true,
+                ));
+          }),
+          AnimatedBuilder(animation: animationController, builder: (context, child) {
+            return Positioned(
+                left: size.width/2 - 16,
                 top: (size.height * 0.5) - 95 -10 * blockY.value,
                 child: Image(
                   image: AssetImage("assets/block_${blockFrame.value}.png"),
                   gaplessPlayback: true,
                 ));
           }),
+
           AnimatedBuilder(animation: animationController, builder: (context, child) {
             return Positioned(
                 left: marioX.value * size.width - 16,
