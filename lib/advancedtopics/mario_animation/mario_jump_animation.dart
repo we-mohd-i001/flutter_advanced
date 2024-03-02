@@ -105,7 +105,7 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
           AnimatedBuilder(animation: animationController, builder: (context, child) {
             return Positioned(
                 left: size.width/2 - 16,
-                top: (size.height * 0.5) - 95 - 120 * coinY.value,
+                top: (size.height * 0.5) - 105 - 120 * coinY.value,
                 child: const Image(
                   image: AssetImage("assets/coin.png"),
                   gaplessPlayback: true,
@@ -114,7 +114,7 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
           AnimatedBuilder(animation: animationController, builder: (context, child) {
             return Positioned(
                 left: size.width/2 - 16,
-                top: (size.height * 0.5) - 95 -10 * blockY.value,
+                top: (size.height * 0.5) - 105 -10 * blockY.value,
                 child: Image(
                   image: AssetImage("assets/block_${blockFrame.value}.png"),
                   gaplessPlayback: true,
