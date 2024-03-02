@@ -8,7 +8,7 @@ class MarioJumpAnimation extends StatefulWidget {
 }
 
 class _MarioJumpAnimationState extends State<MarioJumpAnimation>
-  with SingleTickerProviderStateMixin{
+    with SingleTickerProviderStateMixin {
   late AnimationController animationController;
 
   late Animation<double> marioX;
@@ -20,12 +20,11 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
 
   late Animation<double> coinY;
 
-
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 4));
+    animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 4));
     List<double> weights = [1.0, 0.1, 0.3, 0.3, 1.0];
 
     marioX = TweenSequence<double>([
@@ -39,8 +38,14 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
     marioY = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[0]),
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[1]),
-      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: Curves.easeOutQuad)), weight: weights[2]),
-      TweenSequenceItem(tween: Tween(begin: 1.0, end: 0.0).chain(CurveTween(curve: Curves.easeInQuad)), weight: weights[3]),
+      TweenSequenceItem(
+          tween: Tween(begin: 0.0, end: 1.0)
+              .chain(CurveTween(curve: Curves.easeOutQuad)),
+          weight: weights[2]),
+      TweenSequenceItem(
+          tween: Tween(begin: 1.0, end: 0.0)
+              .chain(CurveTween(curve: Curves.easeInQuad)),
+          weight: weights[3]),
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[4]),
     ]).animate(animationController);
 
@@ -56,10 +61,12 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[0]),
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[1]),
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[2]),
-      TweenSequenceItem(tween: TweenSequence<double>([
-        TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 1.0),
-        TweenSequenceItem(tween: Tween(begin: 1.0, end: 0.0), weight: 1.0),
-      ]), weight: weights[3]),
+      TweenSequenceItem(
+          tween: TweenSequence<double>([
+            TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 1.0),
+            TweenSequenceItem(tween: Tween(begin: 1.0, end: 0.0), weight: 1.0),
+          ]),
+          weight: weights[3]),
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[4]),
     ]).animate(animationController);
 
@@ -75,25 +82,24 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[0]),
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[1]),
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[2]),
-      TweenSequenceItem(tween: TweenSequence<double>([
-        TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 1.0),
-        TweenSequenceItem(tween: Tween(begin: 1.0, end: 0.0), weight: 1.0),
-      ]), weight: weights[3]),
+      TweenSequenceItem(
+          tween: TweenSequence<double>([
+            TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 1.0),
+            TweenSequenceItem(tween: Tween(begin: 1.0, end: 0.0), weight: 1.0),
+          ]),
+          weight: weights[3]),
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[4]),
     ]).animate(animationController);
 
-
     animationController.repeat();
   }
-  
+
   walkAnimation() => TweenSequence([
-    TweenSequenceItem(tween: StepTween(begin: 2, end: 5), weight: 1),
-    TweenSequenceItem(tween: StepTween(begin: 2, end: 5), weight: 1),
-    TweenSequenceItem(tween: StepTween(begin: 2, end: 5), weight: 1),
-    TweenSequenceItem(tween: StepTween(begin: 2, end: 5), weight: 1),
-  ]);
-
-
+        TweenSequenceItem(tween: StepTween(begin: 2, end: 5), weight: 1),
+        TweenSequenceItem(tween: StepTween(begin: 2, end: 5), weight: 1),
+        TweenSequenceItem(tween: StepTween(begin: 2, end: 5), weight: 1),
+        TweenSequenceItem(tween: StepTween(begin: 2, end: 5), weight: 1),
+      ]);
 
   @override
   Widget build(BuildContext context) {
@@ -102,34 +108,128 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
       backgroundColor: Colors.lightBlue,
       body: Stack(
         children: [
-          AnimatedBuilder(animation: animationController, builder: (context, child) {
-            return Positioned(
-                left: size.width/2 - 16,
-                top: (size.height * 0.5) - 105 - 120 * coinY.value,
-                child: const Image(
-                  image: AssetImage("assets/coin.png"),
-                  gaplessPlayback: true,
-                ));
-          }),
-          AnimatedBuilder(animation: animationController, builder: (context, child) {
-            return Positioned(
-                left: size.width/2 - 16,
-                top: (size.height * 0.5) - 105 -10 * blockY.value,
-                child: Image(
-                  image: AssetImage("assets/block_${blockFrame.value}.png"),
-                  gaplessPlayback: true,
-                ));
-          }),
+          AnimatedBuilder(
+              animation: animationController,
+              builder: (context, child) {
+                return Positioned(
+                    left: size.width / 2 - 16,
+                    top: (size.height * 0.5) - 105 - 120 * coinY.value,
+                    child: const Image(
+                      image: AssetImage("assets/coin.png"),
+                      gaplessPlayback: true,
+                    ));
+              }),
+          AnimatedBuilder(
+              animation: animationController,
+              builder: (context, child) {
+                return Positioned(
+                    left: size.width / 2 - 16,
+                    top: (size.height * 0.5) - 105 - 10 * blockY.value,
+                    child: Image(
+                      image: AssetImage("assets/block_${blockFrame.value}.png"),
+                      gaplessPlayback: true,
+                    ));
+              }),
+          Positioned(
+              top: (size.height * 0.5 + 60) ,
+              child: Container(
+                width: size.width,
+                height: 46,
+                color: Colors.red.shade900,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children:  [
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
 
-          AnimatedBuilder(animation: animationController, builder: (context, child) {
-            return Positioned(
-                left: marioX.value * size.width - 16,
-                top: (size.height * 0.5) - 80 * marioY.value,
-                child: Image(
-                  image: AssetImage("assets/mario_${marioFrame.value}.png"),
-                  gaplessPlayback: true,
-                ));
-          }),
+
+                    ],),
+                    Container(height: 2,  color: Colors.white,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+                      Container(height: 10, width: 2, color: Colors.white,),
+
+                      ],
+
+                    ),
+                    Container(height: 2,  color: Colors.white,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+
+                      ],
+
+                    ),
+                    Container(height: 2,  color: Colors.white,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+                        Container(height: 10, width: 2, color: Colors.white,),
+
+                      ],
+
+                    )
+                  ],
+                ),
+              )),
+          AnimatedBuilder(
+              animation: animationController,
+              builder: (context, child) {
+                return Positioned(
+                    left: marioX.value * size.width - 16,
+                    top: (size.height * 0.5) - 80 * marioY.value,
+                    child: Image(
+                      image: AssetImage("assets/mario_${marioFrame.value}.png"),
+                      gaplessPlayback: true,
+                    ));
+              }),
+
+          Positioned(
+            left: size.width / 2 - 50,
+            top: size.height /2 +180,
+            child: ElevatedButton.icon(onPressed: (){
+              Navigator.pop(context);
+            }, icon: const Icon(Icons.arrow_back_rounded),
+            label: const Text('Back'),),
+          )
 
         ],
       ),
