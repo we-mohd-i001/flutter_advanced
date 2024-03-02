@@ -26,7 +26,7 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
   void initState(){
     super.initState();
     animationController = AnimationController(vsync: this, duration: const Duration(seconds: 4));
-    List<double> weights = [1.0, 0.1, 0.2, 0.2, 1.0];
+    List<double> weights = [1.0, 0.1, 0.3, 0.3, 1.0];
 
     marioX = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.5), weight: weights[0]),
@@ -76,10 +76,10 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[1]),
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[2]),
       TweenSequenceItem(tween: TweenSequence<double>([
-        TweenSequenceItem(tween: Tween(begin: 0.0, end: 3.0), weight: 1.0),
-        TweenSequenceItem(tween: Tween(begin: 3.0, end: 3.0), weight: 1.0),
+        TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 1.0),
+        TweenSequenceItem(tween: Tween(begin: 1.0, end: 0.0), weight: 1.0),
       ]), weight: weights[3]),
-      TweenSequenceItem(tween: Tween(begin: 4.0, end: 4.0), weight: weights[4]),
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.0), weight: weights[4]),
     ]).animate(animationController);
 
 
@@ -105,7 +105,7 @@ class _MarioJumpAnimationState extends State<MarioJumpAnimation>
           AnimatedBuilder(animation: animationController, builder: (context, child) {
             return Positioned(
                 left: size.width/2 - 16,
-                top: (size.height * 0.5) - 95 -10 * coinY.value,
+                top: (size.height * 0.5) - 95 - 120 * coinY.value,
                 child: const Image(
                   image: AssetImage("assets/coin.png"),
                   gaplessPlayback: true,
