@@ -21,7 +21,7 @@ class GlassOfLiquid extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     Paint liquidColor = Paint()
-      ..color = Color.fromARGB(255, 235, 235, 235)
+      ..color = const Color.fromARGB(255, 235, 235, 235)
       ..style = PaintingStyle.fill;
 
     Paint black = Paint()
