@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         '/' : (context) => const HomeScreen(),
         '/liquid': (context) => const CustomPaint1(),
         '/mario' : (context) => const MarioJumpAnimation(),
-        '/friction' : (context) => const FrictionSimulation(),
+        '/friction' : (context) => const FrictionSimulationPage(),
       },
     );
   }
