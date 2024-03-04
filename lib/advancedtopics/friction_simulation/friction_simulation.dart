@@ -74,7 +74,7 @@ class _FrictionSimulationState extends State<FrictionSimulationPage>
                       const Text('Mass     '),
                       Slider(
                         min: 0.0,
-                        max: 10,
+                        max: 8,
                         value: mass,
                         onChanged: (val) {
                           setState(() {
@@ -133,9 +133,9 @@ class _FrictionSimulationState extends State<FrictionSimulationPage>
             builder: (context, snapshot) {
               return Positioned(
                 width: 50,
-                height: 50,
-                bottom: size.height / 3,
-                left: size.width / 4 - 25 + blockAnimationController.value,
+                height: 20,
+                bottom: size.height / 3 + blockAnimationController.value*blockAnimationController.value/300 %1,
+                left: size.width / 4 + 70 + blockAnimationController.value,
                 child: Container(decoration: const BoxDecoration(
                     color: Colors.red,
                   shape: BoxShape.circle
