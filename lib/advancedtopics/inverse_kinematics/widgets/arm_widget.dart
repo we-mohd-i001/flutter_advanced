@@ -25,10 +25,10 @@ class ArmPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     Paint blackFill = Paint()
-      ..color = Colors.black
+      ..color = Colors.grey.shade700
       ..style = PaintingStyle.fill;
     Paint blackStroke = Paint()
-      ..color = Colors.black
+      ..color = Colors.grey.shade700
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5;
 

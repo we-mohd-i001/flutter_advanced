@@ -24,6 +24,8 @@ class _InverseKinematicsPageState extends State<InverseKinematicsPage>
     arm = Anchor(loc: const Offset(0, 0));
     Bone b = Bone(70, arm);
     arm.child = b;
+    Bone b2 = Bone(70, b);
+    b.child = b2;
   }
 
   @override
