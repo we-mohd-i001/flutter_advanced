@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 
-
 class FrictionSimulationPage extends StatefulWidget {
   const FrictionSimulationPage({super.key});
 
@@ -9,24 +8,29 @@ class FrictionSimulationPage extends StatefulWidget {
   State<FrictionSimulationPage> createState() => _FrictionSimulationState();
 }
 
-class _FrictionSimulationState extends State<FrictionSimulationPage> with SingleTickerProviderStateMixin{
+class _FrictionSimulationState extends State<FrictionSimulationPage>
+    with TickerProviderStateMixin {
   late AnimationController blockAnimationController;
+  double drag = 1;
+  double position = 1;
+  double velocity = 1;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     blockAnimationController = AnimationController.unbounded(vsync: this);
   }
 
-  void _nudgeBlock(){
-    FrictionSimulation sim = FrictionSimulation(0, 0, 0);
-    blockAnimationController.animateWith(sim);
-  }
-  void _resetBlock(){
-    FrictionSimulation sim = FrictionSimulation(0, 0, 0);
-    blockAnimationController.animateWith(sim);
+  void _nudgeBlock() {
+    FrictionSimulation nonMovingSimulation =
+        FrictionSimulation(drag, position, velocity);
+    blockAnimationController.animateWith(nonMovingSimulation);
   }
 
+  void _resetBlock() {
+    FrictionSimulation nonMovingSimulation = FrictionSimulation(0, 0, 0);
+    blockAnimationController.animateWith(nonMovingSimulation);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +45,40 @@ class _FrictionSimulationState extends State<FrictionSimulationPage> with Single
         children: [
           Positioned(
               top: 0,
-              child: Column (
-            children: const [
-              Slider(min: 0.0, max: 10, onChanged: null, value: 1.0,),
-              Slider(min: 0.0, max: 10, onChanged: null, value: 1.0,),
-              Slider(min: 0.0, max: 10, onChanged: null, value: 1.0,),
-
-            ],
-          )),
+              child: Column(
+                children: [
+                  Slider(
+                    min: 0.0,
+                    max: 2,
+                    value: drag,
+                    onChanged: (val) {
+                      setState(() {
+                        drag = val;
+                      });
+                    },
+                  ),
+                  Slider(
+                    min: 0.0,
+                    max: 10,
+                    value: position,
+                    onChanged: (val) {
+                      setState(() {
+                        position = val;
+                      });
+                    },
+                  ),
+                  Slider(
+                    min: 0.0,
+                    max: 1000,
+                    value: velocity,
+                    onChanged: (val) {
+                      setState(() {
+                        velocity = val;
+                      });
+                    },
+                  ),
+                ],
+              )),
           Positioned(
             bottom: 0,
             left: 0,
@@ -65,31 +95,27 @@ class _FrictionSimulationState extends State<FrictionSimulationPage> with Single
                 width: 50,
                 height: 50,
                 bottom: size.height / 3,
-                left: size.height / 4 - 125 + blockAnimationController.value,
-                child: Container(
-                  color: Colors.red,
-                ),
+                left: size.width / 4 - 25 + blockAnimationController.value,
+                child: Container(color: Colors.red),
               );
             },
           ),
           Positioned(
-              bottom: size.height / 7,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      ElevatedButton(onPressed: _nudgeBlock, child: const Text('NUDGE')),
-                      const SizedBox(width: 20),
-                      ElevatedButton(onPressed: _resetBlock, child: const Text('RESET')),
-                    ],
-                  ),
-                  
-                ],
-              ),
-
+            bottom: size.height / 7,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    ElevatedButton(
+                        onPressed: _nudgeBlock, child: const Text('NUDGE')),
+                    const SizedBox(width: 20),
+                    ElevatedButton(
+                        onPressed: _resetBlock, child: const Text('RESET')),
+                  ],
+                ),
+              ],
+            ),
           ),
-
-
         ],
       ),
     );
