@@ -26,6 +26,9 @@ class HomeScreen extends StatelessWidget {
               ElevatedButton(onPressed: (){
                 Navigator.pushNamed(context, '/kinematics');
               }, child: const SizedBox(width: 200,child: Center(child: Text('Inverse Kinematics')))),
+              ElevatedButton(onPressed: (){
+                Navigator.pushNamed(context, '/swippable');
+              }, child: const SizedBox(width: 200,child: Center(child: Text('Swippable Page')))),
             ],
           ),
         ),
