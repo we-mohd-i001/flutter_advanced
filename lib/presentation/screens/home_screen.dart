@@ -23,6 +23,9 @@ class HomeScreen extends StatelessWidget {
               ElevatedButton(onPressed: (){
                 Navigator.pushNamed(context, '/friction');
               }, child: const SizedBox(width: 200,child: Center(child: Text('Friction Simulation')))),
+              ElevatedButton(onPressed: (){
+                Navigator.pushNamed(context, '/kinematics');
+              }, child: const SizedBox(width: 200,child: Center(child: Text('Inverse Kinematics')))),
             ],
           ),
         ),

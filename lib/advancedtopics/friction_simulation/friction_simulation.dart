@@ -135,7 +135,7 @@ class _FrictionSimulationState extends State<FrictionSimulationPage>
                 width: 50,
                 height: 20,
                 bottom: size.height / 3 + blockAnimationController.value*blockAnimationController.value/300 %1,
-                left: size.width / 4 + 70 + blockAnimationController.value,
+                left: size.width / 4 - 25 + blockAnimationController.value,
                 child: Container(decoration: const BoxDecoration(
                     color: Colors.red,
                   shape: BoxShape.circle
